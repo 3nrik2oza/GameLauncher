@@ -11,7 +11,7 @@ public class QuizzGame {
     public QuizzGame() {
         createPlayers();
 
-        quizz.createQuizz();
+        quizz.readQuestions();
         startQuizz();
         showWinner();
     }
