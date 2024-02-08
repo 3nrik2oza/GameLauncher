@@ -9,10 +9,10 @@ public class Player {
     public Player()
     {
         Scanner sc = new Scanner(System.in);
-        System.out.printf("Who is the next player? ");
+        System.out.println("Who is the next player? ");
         this.name = sc.nextLine();
 
-        System.out.printf("Which symbol has the player? ");
+        System.out.println("Which symbol has the player? ");
         this.symbol = sc.nextLine().charAt(0);
     }
 }
