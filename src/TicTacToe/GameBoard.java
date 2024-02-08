@@ -76,6 +76,7 @@ public class GameBoard {
             return;
         }
 
+
         requestInputMove(player);
 
     }
