@@ -7,3 +7,6 @@ public class Main {
         gameManager.gameSelector();
     }
 }
+//validacija odabira polja
+//varijabilna velicina polja
+//provjera inputa
