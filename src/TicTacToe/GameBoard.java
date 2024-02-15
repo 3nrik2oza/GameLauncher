@@ -135,7 +135,6 @@ public class GameBoard {
         }
         return null;
     }
-
     private Character diagonalWin() {
         /*for (int i = 0; i < col; i++) {
             Character symbol = state[0][i];
