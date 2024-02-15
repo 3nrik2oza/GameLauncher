@@ -1,6 +1,7 @@
 import Quizz.QuizzGame;
 import TicTacToe.TicTacToeGame;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class GameManager {
@@ -8,7 +9,7 @@ public class GameManager {
     final static String QUIZ_GAME_CODE = "1";
     final static String TIC_TAC_TOE_GAME_CODE = "2";
 
-    public void gameSelector() {
+    public void gameSelector() throws FileNotFoundException {
         String selectedGame = getSelectedGame();
 
         if (selectedGame.equals(QUIZ_GAME_CODE)) {

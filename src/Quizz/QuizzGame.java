@@ -1,5 +1,6 @@
 package Quizz;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class QuizzGame {
@@ -8,7 +9,7 @@ public class QuizzGame {
 
     private Scanner playerInput = new Scanner(System.in);
 
-    public QuizzGame() {
+    public QuizzGame() throws FileNotFoundException {
         createPlayers();
 
         quizz.readQuestions();
