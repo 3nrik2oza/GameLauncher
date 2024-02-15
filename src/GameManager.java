@@ -9,7 +9,7 @@ public class GameManager {
     final static String QUIZ_GAME_CODE = "1";
     final static String TIC_TAC_TOE_GAME_CODE = "2";
 
-    public void gameSelector() throws FileNotFoundException {
+    public void gameSelector() {
         String selectedGame = getSelectedGame();
 
         if (selectedGame.equals(QUIZ_GAME_CODE)) {

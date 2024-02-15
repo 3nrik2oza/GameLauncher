@@ -12,9 +12,9 @@ public class Quizz {
     Question[] questions = new Question[5];
 
 
-    public void readQuestions() throws FileNotFoundException {
+    public void readQuestions() {
         boolean success = false;
-        while (!success)
+        do
         {
             try {
                 System.out.println("Enter the location of the question file");
@@ -25,7 +25,7 @@ public class Quizz {
             } catch (FileNotFoundException readFile) {
                 System.out.println("Location not found");
             }
-        }
+        } while (!success);
 
         for (int i = 0; i<5; i++){
             Question question = new Question();

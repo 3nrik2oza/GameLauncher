@@ -9,7 +9,7 @@ public class QuizzGame {
 
     private Scanner playerInput = new Scanner(System.in);
 
-    public QuizzGame() throws FileNotFoundException {
+    public QuizzGame() {
         createPlayers();
 
         quizz.readQuestions();
