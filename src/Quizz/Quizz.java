@@ -14,7 +14,8 @@ public class Quizz {
 
     public void readQuestions() throws FileNotFoundException {
         boolean success = false;
-        do {
+        while (!success)
+        {
             try {
                 System.out.println("Enter the location of the question file");
                 String location = playerInput.nextLine();
@@ -24,7 +25,7 @@ public class Quizz {
             } catch (FileNotFoundException readFile) {
                 System.out.println("Location not found");
             }
-        } while (!success);
+        }
 
         for (int i = 0; i<5; i++){
             Question question = new Question();
