@@ -102,38 +102,58 @@ public class GameBoard {
         for (int i = 0; i < row; i++) {
             Character symbol = state[i][0];
             int numOfSameSymbols = 0;
-            for(int j = 0; j<col; i ++){
-                System.out.println(i+ " i "+row);
-                System.out.println(j+ " i "+col);
-                if(symbol == state[i][j]){
+            for(int j = 0; j<col; j ++){
+                if(symbol == state[i][j] && symbol != null){
                     numOfSameSymbols ++;
                     if(numOfSameSymbols==3){
                         return symbol;
                     }
                 }else{
-                    numOfSameSymbols = 0;
+                    numOfSameSymbols = 1;
                     symbol = state[i][j];
                 }
             }
-
-            /*
-            if (state[i][0] == state[i][1] && state[i][0] == state[i][2]) {
-                return state[i][0];
-            }*/
         }
         return null;
     }
 
     private Character columnWin() {
         for (int i = 0; i < col; i++) {
-            if (state[0][i] == state[1][i] && state[0][i] == state[2][i]) {
-                return state[0][i];
+            Character symbol = state[0][i];
+            int numOfSameSymbols = 0;
+            for(int j = 0; j<row; j ++){
+                if(symbol == state[j][i] && symbol != null){
+                    numOfSameSymbols ++;
+                    if(numOfSameSymbols==3){
+                        return symbol;
+                    }
+                }else{
+                    numOfSameSymbols = 1;
+                    symbol = state[j][i];
+                }
             }
         }
         return null;
     }
 
     private Character diagonalWin() {
+        /*for (int i = 0; i < col; i++) {
+            Character symbol = state[0][i];
+            int numOfSameSymbols = 0;
+            for(int j = 0; j<row; j ++){
+                if(symbol == state[j][j] && symbol != null){
+                    numOfSameSymbols ++;
+                    if(numOfSameSymbols==3){
+                        return symbol;
+                    }
+                }else{
+                    numOfSameSymbols = 1;
+                    symbol = state[j][i];
+                }
+            }
+        }
+        return null;*/
+
         if (state[0][0] == state[1][1] && state[0][0] == state[2][2]) {
             return state[1][1];
         }
