@@ -13,13 +13,18 @@ public class Quizz {
 
 
     public void readQuestions() throws FileNotFoundException {
+        boolean success = false;
         do {
-            System.out.println("Enter the location of the question file");
-            String location = playerInput.nextLine();
-            file = new File(location);
-        }
-        while (!file.exists());
-        readFile = new Scanner(file);
+            try {
+                System.out.println("Enter the location of the question file");
+                String location = playerInput.nextLine();
+                file = new File(location);
+                readFile = new Scanner(file);
+                success = true;
+            } catch (FileNotFoundException readFile) {
+                System.out.println("Location not found");
+            }
+        } while (!success);
 
         for (int i = 0; i<5; i++){
             Question question = new Question();
