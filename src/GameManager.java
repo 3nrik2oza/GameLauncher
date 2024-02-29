@@ -13,7 +13,7 @@ public class GameManager {
         String selectedGame = getSelectedGame();
 
         if (selectedGame.equals(QUIZ_GAME_CODE)) {
-            QuizzGame quizzGame = new QuizzGame();
+            new QuizzGame();
         } else if (selectedGame.equals(TIC_TAC_TOE_GAME_CODE)) {
             TicTacToeGame ticTacToeGame = new TicTacToeGame();
             ticTacToeGame.play();
