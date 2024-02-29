@@ -1,6 +1,7 @@
 import Quizz.QuizzGame;
 import TicTacToe.TicTacToeGame;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class GameManager {
