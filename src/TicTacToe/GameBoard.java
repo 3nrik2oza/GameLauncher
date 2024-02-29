@@ -24,35 +24,31 @@ public class GameBoard {
         winners.add(diagonalWin());
         winners.add(boardFilled());
 
-        for(int i = 0; i < 4; i++){
-            if(winners.get(i) != null){
+        for (int i = 0; i < 4; i++) {
+            if (winners.get(i) != null) {
                 return winners.get(i);
             }
         }
 
         return null;
     }
-    public short determineBeginner(String name1, String name2)
-    {
+
+    public short determineBeginner(String name1, String name2) {
         short nextPlayer = 2;
-        if (Math.random() < 0.5)
-        {
+        if (Math.random() < 0.5) {
             System.out.printf(name1 + " begins." + '\n');
             nextPlayer = 1;
         }
-        if (nextPlayer == 2)
-        {
+        if (nextPlayer == 2) {
             System.out.printf(name2 + " begins." + '\n');
         }
         return nextPlayer;
     }
-    public void display()
-    {
-        for (int i=0; i<row; i++)
-        {
-            for (int j=0; j<col-1; j++)
-            {
-                try{
+
+    public void display() {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col - 1; j++) {
+                try {
                     System.out.printf(nullToSpace(state[i][j]) + " | ");
                 } catch (Exception e) {
 
@@ -61,41 +57,50 @@ public class GameBoard {
             System.out.printf("" + nullToSpace(state[i][col-1]) + '\n');
         }
     }
-    public String findWinnerName(char winnerSymbol, Player player1, Player player2)
-    {
-        String winner="Nobody";
-        if (winnerSymbol == player1.symbol)
-        {
+
+    public String findWinnerName(char winnerSymbol, Player player1, Player player2) {
+        String winner = "Nobody";
+        if (winnerSymbol == player1.symbol) {
             winner = player1.name;
         }
-        if (winnerSymbol == player2.symbol)
-        {
+        if (winnerSymbol == player2.symbol) {
             winner = player2.name;
         }
         return winner;
     }
 
-    public short enterMove(short nextPlayer, Player player1, Player player2)
-    {
-        if (nextPlayer == 1)
-        {
+    public short enterMove(short nextPlayer, Player player1, Player player2) {
+        if (nextPlayer == 1) {
             requestInputMove(player1);
             nextPlayer = 2;
-        }
-        else
-        {
+        } else {
             requestInputMove(player2);
             nextPlayer = 1;
         }
         return nextPlayer;
     }
 
-    private void requestInputMove(Player player)
-    {
+    private void requestInputMove(Player player) {
         System.out.printf(player.name + ", enter your move: ");
         Scanner sc = new Scanner(System.in);
-        int rowAndColoumn = Integer.parseInt(sc.nextLine());
-        state[rowAndColoumn/10-1][rowAndColoumn%10-1] = player.symbol;
+        int playerInput = Integer.parseInt(sc.nextLine());
+
+        if (state[rowNum(playerInput)][colNum(playerInput)] == null) {
+            state[rowNum(playerInput)][colNum(playerInput)] = player.symbol;
+            return;
+        }
+
+
+        requestInputMove(player);
+
+    }
+
+    private int rowNum(int playerInput){
+        return playerInput / 10 - 1;
+    }
+
+    private int colNum(int playerInput){
+       return playerInput % 10 - 1;
     }
 
     private Character rowsWin() {
