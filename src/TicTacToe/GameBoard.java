@@ -86,8 +86,13 @@ public class GameBoard {
 
     private Character rowsWin() {
         for (int i = 0; i < 3; i++) {
-            if (state[i][0] == state[i][1] && state[i][0] == state[i][2]) {
-                return state[i][0];
+            int counter=1;
+            Character previouSymbol=state[0][i];
+            for (int j = 1; j < 3; j++) {
+                Character currentSymbol=state[j][i];
+                if(currentSymbol==previouSymbol){
+                    counter=counter+1;
+                }
             }
         }
         return null;
