@@ -7,7 +7,7 @@ public class TicTacToeGame {
         Player player2 = new Player(player1.symbol);
         GameBoard gameBoard = new GameBoard();
         short nextPlayer = gameBoard.determineBeginner(player1.name, player2.name);
-
+        gameBoard.rowsAndCols();
         while (gameBoard.finished()==null)
         {
             gameBoard.display();

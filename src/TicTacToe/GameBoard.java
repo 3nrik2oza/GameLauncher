@@ -1,10 +1,20 @@
 package TicTacToe;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class GameBoard {
-    private Character state[][] = new Character[3][3];
+    Scanner playerInput = new Scanner(System.in);
+    int row=3, col=3;
+    Character[][] state;
+    public void rowsAndCols(){
+        System.out.println("How many rows do you wish to play with? ");
+        row = Integer.parseInt(playerInput.nextLine());
+        System.out.println("How many columns do you wish to play with? ");
+        col = Integer.parseInt(playerInput.nextLine());
+        state = new Character[row][col];
+    }
 
     public Character finished() {
         ArrayList<Character> winners = new ArrayList<>();
@@ -38,13 +48,17 @@ public class GameBoard {
     }
     public void display()
     {
-        for (int i=0; i<3; i++)
+        for (int i=0; i<row; i++)
         {
-            for (int j=0; j<2; j++)
+            for (int j=0; j<col-1; j++)
             {
-                System.out.printf(nullToSpace(state[i][j]) + " | ");
+                try{
+                    System.out.printf(nullToSpace(state[i][j]) + " | ");
+                } catch (Exception e) {
+
+                }
             }
-            System.out.printf("" + nullToSpace(state[i][2]) + '\n');
+            System.out.printf("" + nullToSpace(state[i][col-1]) + '\n');
         }
     }
     public String findWinnerName(char winnerSymbol, Player player1, Player player2)
@@ -85,13 +99,18 @@ public class GameBoard {
     }
 
     private Character rowsWin() {
-        for (int i = 0; i < 3; i++) {
-            int counter=1;
-            Character previouSymbol=state[0][i];
-            for (int j = 1; j < 3; j++) {
-                Character currentSymbol=state[j][i];
-                if(currentSymbol==previouSymbol){
-                    counter=counter+1;
+        for (int i = 0; i < row; i++) {
+            Character symbol = state[i][0];
+            int numOfSameSymbols = 0;
+            for(int j = 0; j<col; j ++){
+                if(symbol == state[i][j] && symbol != null){
+                    numOfSameSymbols ++;
+                    if(numOfSameSymbols==3){
+                        return symbol;
+                    }
+                }else{
+                    numOfSameSymbols = 1;
+                    symbol = state[i][j];
                 }
             }
         }
@@ -99,15 +118,41 @@ public class GameBoard {
     }
 
     private Character columnWin() {
-        for (int i = 0; i < 3; i++) {
-            if (state[0][i] == state[1][i] && state[0][i] == state[2][i]) {
-                return state[0][i];
+        for (int i = 0; i < col; i++) {
+            Character symbol = state[0][i];
+            int numOfSameSymbols = 0;
+            for(int j = 0; j<row; j ++){
+                if(symbol == state[j][i] && symbol != null){
+                    numOfSameSymbols ++;
+                    if(numOfSameSymbols==3){
+                        return symbol;
+                    }
+                }else{
+                    numOfSameSymbols = 1;
+                    symbol = state[j][i];
+                }
             }
         }
         return null;
     }
-
     private Character diagonalWin() {
+        /*for (int i = 0; i < col; i++) {
+            Character symbol = state[0][i];
+            int numOfSameSymbols = 0;
+            for(int j = 0; j<row; j ++){
+                if(symbol == state[j][j] && symbol != null){
+                    numOfSameSymbols ++;
+                    if(numOfSameSymbols==3){
+                        return symbol;
+                    }
+                }else{
+                    numOfSameSymbols = 1;
+                    symbol = state[j][i];
+                }
+            }
+        }
+        return null;*/
+
         if (state[0][0] == state[1][1] && state[0][0] == state[2][2]) {
             return state[1][1];
         }
@@ -118,8 +163,8 @@ public class GameBoard {
     }
 
     private Character boardFilled() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 if (state[i][j] == null) {
                     return null;
                 }
@@ -130,15 +175,6 @@ public class GameBoard {
 
     private char nullToSpace (Character a)
     {
-        char b;
-        if (a == null)
-        {
-            b = ' ';
-        }
-        else
-        {
-            b = a;
-        }
-        return b;
+        return Objects.requireNonNullElse(a, ' ');
     }
 }
