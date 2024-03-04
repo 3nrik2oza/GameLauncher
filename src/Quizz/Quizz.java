@@ -11,7 +11,7 @@ public class Quizz {
     Scanner readFile;
     Question[] questions = new Question[5];
 
-/*Jebem ti mater*/
+    /*Jebem ti mater*/
     public void readQuestions() {
         boolean success = false;
         do {
